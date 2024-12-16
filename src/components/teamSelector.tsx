@@ -12,6 +12,7 @@ const TeamSelector: React.FC = () => {
   const [teams, setTeams] = useState<Team[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedTeam, setSelectedTeam] = useState({ id:27, name: 'Philadelphia 76ers', logo: '	https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg'})
 
   useEffect(() => {
     const getTeams = async () => {
@@ -37,6 +38,14 @@ const TeamSelector: React.FC = () => {
     <div>
       <h1>Select a Team</h1>
       <button onClick={toggleDropDown}>
+        {selectedTeam ? (
+          <span className="flex">
+            <img src={selectedTeam.logo} alt={selectedTeam.name} className="w-6 h-6 mr-2" />
+            {selectedTeam.name}
+          </span>
+        ) : (
+          'Select a Team'
+        )}
         {isDropDownOpen ? 'Close Dropdown' : 'Open Dropdown'}
       </button>
 
